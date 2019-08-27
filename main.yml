@@ -1,19 +1,12 @@
 ---
 - name: Good Ansible - Local Config Play
-  hosts: all
-  gather_facts: true
-  become: true
-
-  tasks:
-
-  - name: Local SSH Configuration
-    hosts: localhost
-    connection: local
-    gather_facts: false
-    become: false
-    roles:
-      - dynamic_ssh_config
-    tags: Local_Config
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: false
+  roles:
+    - dynamic_ssh_config
+  tags: Local_Config
 
 
 - name: Good Ansible - Remote COnfiguration Play
