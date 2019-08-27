@@ -1,0 +1,47 @@
+---
+- name: Good Ansible - Local Config
+  hosts: all
+  gather_facts: true
+  become: true
+
+  tasks:
+
+    - name: Local SSH Configuration
+      hosts: localhost
+      connection: local
+      gather_facts: false
+      become: false
+      roles:
+        - dynamic_ssh_config
+      tags: Local_Config
+
+
+- name: 
+
+
+- name: configuration
+  hosts: all
+  gather_facts: true
+  become: true
+  tasks:
+  - name: Configure opentlc_yum
+    include_role:
+      name: opentlc_yum
+
+  - name: Configure frontend servers
+    include_role:
+      name: frontends
+    when: >-
+      'frontends' in group_names
+
+  - name: Configure app servers
+    include_role:
+      name: apps
+    when: >-
+      'apps' in group_names
+
+  - name: Configure appdb servers
+    include_role:
+      name: appdbs
+    when: >-
+      'appdbs' in group_names
