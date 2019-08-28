@@ -21,7 +21,6 @@
       name: opentlc_yum
     tags: yum_config
 
-
   - name: Configure frontend servers
     include_role:
       name: frontends
@@ -29,14 +28,12 @@
       'frontends' in group_names
     tags: frontend_config
 
-
   - name: Configure app servers
     include_role:
       name: apps
     when: >-
       'apps' in group_names
     tags: appsrv_config
-
 
   - name: Configure appdb servers
     include_role:
